@@ -1,0 +1,182 @@
+{
+  "release": "MHDPS-Wilds-0.1.4.zip",
+  "releaseBytes": 16665292,
+  "releaseSHA256": "d0bb7e632a1465b0630636c2e88274e78857167643406ec0dbc3b7eafa449bdd",
+  "files": [
+    {
+      "path": "modinfo.ini",
+      "bytes": 168,
+      "sha256": "bab9ffbe4d42a408e6b4de86ad1f30aaae4c67cd0ba86e2a2b4833f58a86ef54"
+    },
+    {
+      "path": "cover.png",
+      "bytes": 453840,
+      "sha256": "ad9ceda8cb2d4ccd3f73c19851803d3a58202d7d726389e27e71646461c9c879"
+    },
+    {
+      "path": "README.md",
+      "bytes": 895,
+      "sha256": "c2d67fd2e393bb92dd95e07e385f0b0bffffa660812ff62efac211003da1bd11"
+    },
+    {
+      "path": "reframework/autorun/MHDPS.lua",
+      "bytes": 15726,
+      "sha256": "31f18035342a365fe9511d4f448af436f2420b7da71dd251a74e3c4e415a7679"
+    },
+    {
+      "path": "reframework/plugins/MHDPS-Bootstrap.dll",
+      "bytes": 187392,
+      "sha256": "4f676b88b4c8fc71f1b702ba932e9b6809f283a2548330629bc780ace01ed364"
+    },
+    {
+      "path": "reframework/mhdps/MHDPS-Companion.exe",
+      "bytes": 11125553,
+      "sha256": "3d45b348b1d6e5c44bce6196bab641b6cb2f1e50c74c9475adb80a66120df725"
+    },
+    {
+      "path": "reframework/mhdps/web/assets/backdrops/rise_cover.jpg",
+      "bytes": 811630,
+      "sha256": "946ca1f72350c880af89c3c86c620914fe5c52859b34432e3d3fb8ade9911b1b"
+    },
+    {
+      "path": "reframework/mhdps/web/assets/backdrops/wilds_cover.jpg",
+      "bytes": 2408282,
+      "sha256": "8bbb5980805fe6a802eb53b3f8854d776c6bd0392c591e3b04280bef82fe450e"
+    },
+    {
+      "path": "reframework/mhdps/web/assets/backdrops/world_cover.jpg",
+      "bytes": 1963540,
+      "sha256": "465c940f6b717fb00bf1d4258ec6c9f0bf08fd552896370df889571d992d7f2d"
+    },
+    {
+      "path": "reframework/mhdps/web/assets/weapons/Bow.svg",
+      "bytes": 3042,
+      "sha256": "dac02e0bd8e81da3c2f9d280fb0bbedfdd02ed13f3c7661c7c87fff4f30a3e93"
+    },
+    {
+      "path": "reframework/mhdps/web/assets/weapons/ChargeBlade.svg",
+      "bytes": 2859,
+      "sha256": "f07f0da59e34b460b75463620e225df469451b42c73e39751c974b8f25295f99"
+    },
+    {
+      "path": "reframework/mhdps/web/assets/weapons/DualBlades.svg",
+      "bytes": 3273,
+      "sha256": "f7a4aea187e2df3f24158c6756e748a5e6336feb1bef2c9a2a2ca155851244aa"
+    },
+    {
+      "path": "reframework/mhdps/web/assets/weapons/GreatSword.svg",
+      "bytes": 2668,
+      "sha256": "b74f7ccad82c92872858533bb4128642c559c8a22e5f0de8b39a93351e5da1cc"
+    },
+    {
+      "path": "reframework/mhdps/web/assets/weapons/Gunlance.svg",
+      "bytes": 2795,
+      "sha256": "a9fef5f191e3dc4873e7daff13eecf1ed4008c01d670f644e815a03158d509b6"
+    },
+    {
+      "path": "reframework/mhdps/web/assets/weapons/Hammer.svg",
+      "bytes": 2379,
+      "sha256": "b1a444e073b66375fe2663d50ef198363877bd090f5e5501202033a692a4d10a"
+    },
+    {
+      "path": "reframework/mhdps/web/assets/weapons/HeavyBowgun.svg",
+      "bytes": 2791,
+      "sha256": "d2f4a53317163d8f9e08070b85c9a81f4580b885cc9c73f909b6808630a989cc"
+    },
+    {
+      "path": "reframework/mhdps/web/assets/weapons/HuntingHorn.svg",
+      "bytes": 2069,
+      "sha256": "26abce28ad4a48b9adb2d9b7a06b5eee9d8fae6805d3263792733b8bf6856536"
+    },
+    {
+      "path": "reframework/mhdps/web/assets/weapons/InsectGlaive.svg",
+      "bytes": 3143,
+      "sha256": "a26b2db0a2699da17257364686f5096d5ca54db09d6ff2c996c79498c79e0e7b"
+    },
+    {
+      "path": "reframework/mhdps/web/assets/weapons/Lance.svg",
+      "bytes": 2154,
+      "sha256": "f5ce1abde0560da6dfc0ed7c0bc63897163a46e5f76c160d69c9b6f906686682"
+    },
+    {
+      "path": "reframework/mhdps/web/assets/weapons/LightBowgun.svg",
+      "bytes": 2308,
+      "sha256": "08bbd8c39a454c55369d1f0546e6cef5b124fcf0677dc2c15e90e11ed41d9f4c"
+    },
+    {
+      "path": "reframework/mhdps/web/assets/weapons/LongSword.svg",
+      "bytes": 4170,
+      "sha256": "8d0152af49de5b20a040714540ba86d01d5356402e1c797f14094b25b4d0c558"
+    },
+    {
+      "path": "reframework/mhdps/web/assets/weapons/Palico.svg",
+      "bytes": 1603,
+      "sha256": "3b9adc0aafa50fe8779c0a62e1456e0789c5d0e4ae63a043b66863bd33462c8a"
+    },
+    {
+      "path": "reframework/mhdps/web/assets/weapons/SwitchAxe.svg",
+      "bytes": 3245,
+      "sha256": "e2c272761ab819f23941ae4df53aac0097844314b484d2eea48c8367605f1029"
+    },
+    {
+      "path": "reframework/mhdps/web/assets/weapons/SwordAndShield.svg",
+      "bytes": 2210,
+      "sha256": "ab1fecdce7af32aaf0d65fed723dea40dcff63500422f2a5f8869c85c2cc076f"
+    },
+    {
+      "path": "reframework/mhdps/web/css/style.css",
+      "bytes": 28414,
+      "sha256": "99674d3a259e1940722a5160427661370326e7b0f2d07a5736ad83a605819fb8"
+    },
+    {
+      "path": "reframework/mhdps/web/index.html",
+      "bytes": 17592,
+      "sha256": "52c29c09e9c33c94a27ca70ffaba353171bc1840457ebe482eb56a69595d0cdf"
+    },
+    {
+      "path": "reframework/mhdps/web/js/app.js",
+      "bytes": 53224,
+      "sha256": "b04795a0fb0a0258e081bebe32616fbe2a63701fbdf9a59294398f8e0f0e4fb3"
+    },
+    {
+      "path": "reframework/mhdps/web/js/connection.js",
+      "bytes": 4395,
+      "sha256": "4c536db382a8e8264e66369b3ea081b2ef38bad2450b1e2ad2c80a98afd674ba"
+    },
+    {
+      "path": "reframework/mhdps/web/js/icons.js",
+      "bytes": 39631,
+      "sha256": "f87fd110622756d7e689063a5c9635ba8ff8762482c55ce547e2f2e4878d048e"
+    },
+    {
+      "path": "reframework/mhdps/web/js/locale.js",
+      "bytes": 4261,
+      "sha256": "5c5ea21ab5702251e16e5f5b1be9e7aa8630916cf9904c0f85832beb45029809"
+    },
+    {
+      "path": "reframework/mhdps/web/js/monster-panel.js",
+      "bytes": 3577,
+      "sha256": "8447e9b80e0e1a72eb2555b70f36bbdb0a46ed5eae6a94fd59d05f66030d0128"
+    },
+    {
+      "path": "reframework/mhdps/web/js/sharing.js",
+      "bytes": 11079,
+      "sha256": "4970b8e57f8c9dc9cdfd2ceb829b11e7af7a9d8efacfd252cddce95f62c40b6b"
+    },
+    {
+      "path": "reframework/mhdps/web/js/simulator.js",
+      "bytes": 17793,
+      "sha256": "8123d8092286605db5687b6aab0c0dceb7ed145b22e6bc30066e16b959a43e3a"
+    },
+    {
+      "path": "reframework/mhdps/web/js/storage.js",
+      "bytes": 5175,
+      "sha256": "a00d5c5a17f105f5869faa28cb96e2fb3e47b9e90545604ef1f253e6f9c27dac"
+    },
+    {
+      "path": "reframework/mhdps/web/setup.html",
+      "bytes": 3420,
+      "sha256": "06c4e3058ac8cd26161c03ba6ab6d9ee9b2b67e340db097c636816279c25db33"
+    }
+  ]
+}

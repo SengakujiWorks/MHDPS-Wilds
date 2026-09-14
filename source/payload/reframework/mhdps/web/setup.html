@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="de"><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>MHDPS · Setup</title>
+<style>body{font:16px/1.65 system-ui;background:#0a0d14;color:#dce0e8;max-width:760px;margin:40px auto;padding:24px}a{color:#e7b45a}button{background:#171d2c;color:inherit;border:1px solid #343a46;padding:8px 16px;cursor:pointer}button[aria-pressed=true]{border-color:#e7b45a}small{color:#9aa6b7}</style>
+<nav aria-label="Language"><button id="de" aria-pressed="true">DE</button> <button id="en" aria-pressed="false">EN</button></nav>
+<h1>MHDPS</h1><small>0.1.4 · by Sengakujiworks</small>
+<p id="intro"></p><ol id="steps"></ol><p id="sharing"></p><p id="limits"></p><a id="back" href="index.html"></a>
+<script>
+const texts={de:{intro:'Zeigt Schaden und DPS deiner Jagd im Browser.',steps:[
+'REFramework installieren und das Spiel schließen.',
+'Bisherige DPS-Mods in Fluffy deaktivieren. Die <a href="https://mhdps.sengakujiworks.com/downloads/MHDPS-Wilds-0.1.4.zip">MHDPS-ZIP</a> über Vortex/Fluffy importieren und nur MHDPS aktivieren.',
+'Wilds starten. MHDPS startet den enthaltenen Begleiter automatisch. Beim ersten Start Homepage oder lokale Ansicht auswählen.',
+'Wilds und die <a href="https://mhdps.sengakujiworks.com">Homepage</a> auf demselben PC öffnen. Falls gefragt, lokalen Netzwerkzugriff erlauben.'],
+sharing:'Über das Teilen-Icon erhält dein Kollege einen Zuschauerlink. Er braucht nur den Browser. Deinen Gastgeber-Tab offen lassen.',
+limits:'DPS = Schaden / Questzeit. — bedeutet nicht erfasst. World und Rise sind nur Demo-Ansichten. Die neue Auswertung benötigt noch einen Spieltest.',back:'Zum Dashboard'},
+en:{intro:'Shows your hunt damage and DPS in the browser.',steps:[
+'Install REFramework and close the game.',
+'Disable previous DPS mods in Fluffy. Import the <a href="https://mhdps.sengakujiworks.com/downloads/MHDPS-Wilds-0.1.4.zip">MHDPS ZIP</a> through Vortex/Fluffy and enable only MHDPS.',
+'Start Wilds. MHDPS automatically launches its bundled companion. On first launch, choose the homepage or local dashboard.',
+'Open Wilds and the <a href="https://mhdps.sengakujiworks.com">homepage</a> on the same PC. Allow local network access if prompted.'],
+sharing:'Use the share icon to give your friend a spectator link. They only need a browser. Keep your host tab open.',
+limits:'DPS = damage / quest duration. — means unavailable. World and Rise are demo views only. The new implementation still needs in-game validation.',back:'Open dashboard'}};
+function apply(lang){lang=lang==='en'?'en':'de';document.documentElement.lang=lang;const t=texts[lang];for(const id of ['intro','sharing','limits','back'])document.getElementById(id).textContent=t[id];document.getElementById('steps').innerHTML=t.steps.map(s=>'<li>'+s+'</li>').join('');for(const id of ['de','en'])document.getElementById(id).setAttribute('aria-pressed',String(id===lang));document.getElementById('back').href='index.html?lang='+lang;try{const settings=JSON.parse(localStorage.getItem('mhdps_settings')||'{}');settings.language=lang;localStorage.setItem('mhdps_settings',JSON.stringify(settings));}catch{}}
+let saved='de';try{saved=JSON.parse(localStorage.getItem('mhdps_settings')||'{}').language||'de'}catch{}
+apply(new URLSearchParams(location.search).get('lang')||saved);for(const lang of ['de','en'])document.getElementById(lang).onclick=()=>apply(lang);
+</script></html>

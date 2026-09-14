@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MHDPS - Telemetry & Combat Analytics</title>
+    <link rel="stylesheet" href="css/style.css?v=0.1.4">
+</head>
+<body data-game="wilds">
+
+    <!-- Subdued Atmospheric Game Backdrops -->
+    <div class="backdrop-layer backdrop-wilds"></div>
+    <div class="backdrop-layer backdrop-world"></div>
+    <div class="backdrop-layer backdrop-rise"></div>
+
+    <!-- Minimalist HUD Header -->
+    <header class="app-header">
+        <div class="header-left">
+            <div class="logo-container" title="Monster Hunter Damage Meter & Telemetry">
+                <div class="logo-title">MH<span class="logo-accent">DPS</span></div>
+            </div>
+
+            <!-- Game Mode Badge -->
+            <button class="game-badge" id="gameBadge" title="Klicken zum manuellen Wechseln des Spielmodus">
+                <span class="game-dot"></span>
+                <span id="gameBadgeText">MH Wilds</span>
+            </button>
+        </div>
+
+        <!-- Quest Telemetry Center -->
+        <div class="header-center">
+            <div class="quest-status-card">
+                <div class="quest-time-wrap">
+                    <div class="quest-timer" id="questTimer" title="Quest-Dauer">00:00.0</div>
+                </div>
+
+                <div class="quest-target-wrap">
+                    <div class="quest-target-row">
+                        <span class="monster-name" id="monsterName">Keine Quest aktiv</span>
+                        <span class="monster-hp-val" id="monsterHpText">—</span>
+                    </div>
+                    <div class="monster-hp-track">
+                        <div class="monster-hp-fill" id="monsterHpFill" style="width: 100%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Header Actions & Status Dot -->
+        <div class="header-right">
+            <!-- Connection Status Dot with Tooltip -->
+            <div class="status-dot-wrap disconnected" id="connectionPill" title="Warte auf Spiel...">
+                <span class="pulse-dot"></span>
+                <span id="connectionText" class="sr-only">Warte auf Spiel...</span>
+            </div>
+
+            <!-- Share Modal Icon Button -->
+            <button class="btn-icon" id="shareModalBtn" title="Live-Ansicht teilen (Zuschauerlink)" aria-label="Live-Ansicht teilen">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="18" cy="5" r="3"></circle>
+                    <circle cx="6" cy="12" r="3"></circle>
+                    <circle cx="18" cy="19" r="3"></circle>
+                    <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
+                    <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
+                </svg>
+                <span class="share-active-indicator"></span>
+            </button>
+
+            <!-- History Modal Icon Button -->
+            <button class="btn-icon" id="historyBtn" title="Quest-Historie anzeigen" aria-label="Quest-Historie">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+            </button>
+
+            <!-- Settings Modal Icon Button -->
+            <button class="btn-icon" id="settingsBtn" title="Einstellungen & Spalten konfigurieren" aria-label="Einstellungen">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="3"></circle>
+                    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+                </svg>
+            </button>
+        </div>
+    </header>
+    <section id="monsterPanel" class="monster-panel" hidden aria-label="Monster-HP">
+        <div class="monster-panel-inner" id="monsterPanelContent"></div>
+    </section>
+
+    <!-- Spectator Stream Banner (Visible only when watching a live share link) -->
+    <div id="shareViewerNote" class="viewer-note-banner" hidden>
+        <div class="viewer-note-content">
+            <span class="viewer-tag">ZUSCHAUER</span>
+            <span>Keine Mod oder Begleiter erforderlich. Die Daten werden live vom Gaming-PC des Gastgebers gestreamt.</span>
+        </div>
+    </div>
+
+    <!-- Main Workspace Area -->
+    <main class="main-container">
+        <!-- Live Combatants List -->
+        <section class="hunters-list" id="huntersList">
+            <!-- Populated dynamically by app.js -->
+        </section>
+    </main>
+
+    <!-- Share Modal (Dedicated Spectator Dialog) -->
+    <div class="modal-overlay" id="shareModal" role="dialog" aria-labelledby="shareModalTitle" aria-modal="true">
+        <div class="modal-card share-card">
+            <div class="modal-header">
+                <h2 id="shareModalTitle">Live-Ansicht teilen</h2>
+                <button class="btn-icon" id="closeShareModalBtn" aria-label="Schließen">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="shareOwnerControls">
+                    <p class="modal-intro">Erstelle einen temporären Zuschauerlink für deine Mitspieler oder Streamer. Zuschauer benötigen weder Mod noch Begleiter.</p>
+                    
+                    <div class="share-action-row">
+                        <button class="btn-action primary" id="shareStartBtn">Live-Ansicht starten</button>
+                    </div>
+
+                    <div id="shareLinkControls" class="share-controls-block" hidden>
+                        <label for="shareLink" class="setting-label">Zuschauerlink</label>
+                        <div class="share-input-group">
+                            <input id="shareLink" type="text" readonly autocomplete="off" spellcheck="false" placeholder="Link wird generiert...">
+                            <button class="btn-action" id="shareCopyBtn">Link kopieren</button>
+                        </div>
+                        <div class="share-stop-row">
+                            <button class="btn-action danger" id="shareStopBtn">Freigabe beenden</button>
+                        </div>
+                    </div>
+
+                    <p id="shareMessage" class="share-status-message" role="status" aria-live="polite">Teile deine aktuelle Jagd, sobald dein Spiel verbunden ist.</p>
+
+                    <div class="privacy-note">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                        <span>Beim Teilen werden Spielernamen und Kampfwerte über diesen Server gestreamt. Ohne Freigabe bleiben alle Spieldaten ausschließlich lokal auf deinem PC.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-action" id="dismissShareModalBtn">Schließen</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- History Modal -->
+    <div class="modal-overlay" id="historyModal" role="dialog" aria-labelledby="historyModalTitle" aria-modal="true">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h2 id="historyModalTitle">Lokale Quest-Historie</h2>
+                <button class="btn-icon" id="closeHistoryBtn" aria-label="Schließen">&times;</button>
+            </div>
+            <div class="modal-body" id="historyList">
+                <!-- Populated via IndexedDB -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn-action danger-outline" id="clearHistoryBtn">Historie leeren</button>
+                <button class="btn-action primary" id="exportAllJsonBtn">Als JSON exportieren</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Settings & Tools Modal -->
+    <div class="modal-overlay" id="settingsModal" role="dialog" aria-labelledby="settingsModalTitle" aria-modal="true">
+        <div class="modal-card settings-card">
+            <div class="modal-header">
+                <h2 id="settingsModalTitle">Einstellungen &amp; Werkzeuge</h2>
+                <button class="btn-icon" id="closeSettingsBtn" aria-label="Schließen">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Section: Language Switcher -->
+                <div class="settings-section">
+                    <div class="language-switch-row">
+                        <span class="setting-label" id="languageLabel">Sprache / Language</span>
+                        <div class="language-btn-group">
+                            <button type="button" class="btn-lang active" id="langDeBtn">DE</button>
+                            <button type="button" class="btn-lang" id="langEnBtn">EN</button>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="settings-divider">
+
+                <!-- Section: Metric Columns -->
+                <div class="settings-section">
+                    <h3 class="settings-section-title" id="columnsSectionTitle">Anzuzeigende Werte im Hauptbalken</h3>
+                    <p class="settings-section-desc" id="columnsSectionDesc">Wähle aus, welche Spalten direkt in der Zeile jedes Jägers sichtbar sein sollen:</p>
+                    <div class="checkbox-grid" id="columnsCheckboxGrid">
+                        <label class="setting-checkbox-label">
+                            <input type="checkbox" data-col="dps" checked>
+                            <span>DPS (Schaden/Sek.)</span>
+                        </label>
+                        <label class="setting-checkbox-label">
+                            <input type="checkbox" data-col="totalDamage" checked>
+                            <span>Gesamtschaden</span>
+                        </label>
+                        <label class="setting-checkbox-label">
+                            <input type="checkbox" data-col="highestHit" checked>
+                            <span>Höchster Treffer</span>
+                        </label>
+                        <label class="setting-checkbox-label">
+                            <input type="checkbox" data-col="highestCrit">
+                            <span>Höchster Krit (Crit)</span>
+                        </label>
+                        <label class="setting-checkbox-label">
+                            <input type="checkbox" data-col="monsterHits">
+                            <span>Treffer (Hits Count)</span>
+                        </label>
+                        <label class="setting-checkbox-label">
+                            <input type="checkbox" data-col="healingDone">
+                            <span>Team-Heilung</span>
+                        </label>
+                        <label class="setting-checkbox-label">
+                            <input type="checkbox" data-col="palicoDamage">
+                            <span>Begleiter / Palico</span>
+                        </label>
+                        <label class="setting-checkbox-label">
+                            <input type="checkbox" data-col="range">
+                            <span>Distanz (Nah/Fern)</span>
+                        </label>
+                    </div>
+                </div>
+
+                <hr class="settings-divider">
+
+                <!-- Section: Tools & Simulation -->
+                <div class="settings-section">
+                    <h3 class="settings-section-title" id="toolsSectionTitle">Werkzeuge &amp; Simulation</h3>
+                    <div class="tools-action-grid">
+                        <div class="tool-card">
+                            <div class="tool-info">
+                                <div class="tool-name">Kampfsimulator</div>
+                                <div class="tool-desc">Simuliert einen 4-Spieler-Kampf zum Testen des Layouts.</div>
+                            </div>
+                            <button class="btn-action" id="simToggleBtn">Demo Simulator</button>
+                        </div>
+                        <div class="tool-card">
+                            <div class="tool-info">
+                                <div class="tool-name">Auto-Save</div>
+                                <div class="tool-desc">Speichert abgeschlossene Quests automatisch im Browser.</div>
+                            </div>
+                            <button class="btn-action active" id="autoSaveBtn">Auto-Save Aktiv</button>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="settings-divider">
+
+                <!-- Section: Companion Setup & Downloads -->
+                <div class="settings-section">
+                    <h3 class="settings-section-title" id="companionSectionTitle">Begleiter &amp; Verbindung</h3>
+                    <section class="setup-card" id="monsterPanelSettings">
+                        <h3 id="monsterPanelSettingsTitle">Monster-Anzeige</h3>
+                        <label><input type="checkbox" id="showMonsterPanel"> <span id="showMonsterPanelLabel">Monster- und Teile-HP anzeigen</span></label><br>
+                        <label><input type="checkbox" id="animateMonsterPanel"> <span id="animateMonsterPanelLabel">Lila Randanimation</span></label>
+                    </section>
+                    <section id="localSetup" class="setup-card">
+                        <p class="setup-info"><strong>Live-Daten von diesem Gaming-PC:</strong> Aktiviere MHDPS über Vortex/Fluffy und starte Wilds. Der Begleiter startet automatisch.</p>
+                        <div class="download-links-grid">
+                            <a href="https://mhdps.sengakujiworks.com/downloads/MHDPS-Wilds-0.1.4.zip" class="download-link">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                                MHDPS Mod
+                            </a>
+                            <a href="setup.html" class="download-link">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="16" x2="12" y2="12"></line><line x1="12" y1="8" x2="12.01" y2="8"></line></svg>
+                                Einrichtung &amp; Hilfe
+                            </a>
+                            <a href="http://localhost:8080" target="_blank" rel="noopener" class="download-link">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                                Lokales Offline-Dashboard
+                            </a>
+                        </div>
+                        <div class="setup-discreet-meta">
+                            <span id="systemClockMeta"><span id="systemClockLabel">Systemzeit:</span> <span id="systemClock" class="system-clock-text">00:00:00</span></span> &bull;
+                            <span id="localPortText">Lokaler Port: ws://127.0.0.1:9999</span>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-action primary" id="saveSettingsBtn">Fertig</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/icons.js?v=0.1.4"></script>
+    <script src="js/storage.js?v=0.1.4"></script>
+    <script src="js/locale.js?v=0.1.4"></script>
+    <script src="js/connection.js?v=0.1.4"></script>
+    <script src="js/simulator.js?v=0.1.4"></script>
+    <script src="js/sharing.js?v=0.1.4"></script>
+    <script src="js/monster-panel.js?v=0.1.4"></script>
+    <script src="js/app.js?v=0.1.4"></script>
+</body>
+</html>
