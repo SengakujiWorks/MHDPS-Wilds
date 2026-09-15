@@ -1,3 +1,7 @@
 d0bb7e632a1465b0630636c2e88274e78857167643406ec0dbc3b7eafa449bdd  MHDPS-Wilds-0.1.4.zip
-4f676b88b4c8fc71f1b702ba932e9b6809f283a2548330629bc780ace01ed364  reframework/plugins/MHDPS-Bootstrap.dll
-3d45b348b1d6e5c44bce6196bab641b6cb2f1e50c74c9475adb80a66120df725  reframework/mhdps/MHDPS-Companion.exe
+4f676b88b4c8fc71f1b702ba932e9b6809f283a2548330629bc780ace01ed364  0.1.4 reframework/plugins/MHDPS-Bootstrap.dll
+3d45b348b1d6e5c44bce6196bab641b6cb2f1e50c74c9475adb80a66120df725  0.1.4 reframework/mhdps/MHDPS-Companion.exe
+
+# 0.1.5
+31a6d45550098621fc533a5bf914a761e75e7d6808dac0bc880362bbc3df860d  MHDPS-Wilds-0.1.5.zip
+53d59f6b2c094d41b29239a2da3f11c74188242faeb6b0d09a7bb3df4d85451c  reframework/plugins/MHDPS-Bootstrap.dll

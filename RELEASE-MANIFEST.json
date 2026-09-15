@@ -1,12 +1,12 @@
 {
-  "release": "MHDPS-Wilds-0.1.4.zip",
-  "releaseBytes": 16665292,
-  "releaseSHA256": "d0bb7e632a1465b0630636c2e88274e78857167643406ec0dbc3b7eafa449bdd",
+  "release": "MHDPS-Wilds-0.1.5.zip",
+  "releaseBytes": 5813040,
+  "releaseSHA256": "31a6d45550098621fc533a5bf914a761e75e7d6808dac0bc880362bbc3df860d",
   "files": [
     {
-      "path": "modinfo.ini",
-      "bytes": 168,
-      "sha256": "bab9ffbe4d42a408e6b4de86ad1f30aaae4c67cd0ba86e2a2b4833f58a86ef54"
+      "path": "README.md",
+      "bytes": 1332,
+      "sha256": "a559a24a5c87995a85aebd62cf35bf1215dd5a25c94ef346addbad7c2c94374a"
     },
     {
       "path": "cover.png",
@@ -14,24 +14,14 @@
       "sha256": "ad9ceda8cb2d4ccd3f73c19851803d3a58202d7d726389e27e71646461c9c879"
     },
     {
-      "path": "README.md",
-      "bytes": 895,
-      "sha256": "c2d67fd2e393bb92dd95e07e385f0b0bffffa660812ff62efac211003da1bd11"
+      "path": "modinfo.ini",
+      "bytes": 168,
+      "sha256": "d29ec2c63a2d36095c86fc34fab9f11b2637eb5f75203c7bfd5b0493f224ef5d"
     },
     {
       "path": "reframework/autorun/MHDPS.lua",
       "bytes": 15726,
-      "sha256": "31f18035342a365fe9511d4f448af436f2420b7da71dd251a74e3c4e415a7679"
-    },
-    {
-      "path": "reframework/plugins/MHDPS-Bootstrap.dll",
-      "bytes": 187392,
-      "sha256": "4f676b88b4c8fc71f1b702ba932e9b6809f283a2548330629bc780ace01ed364"
-    },
-    {
-      "path": "reframework/mhdps/MHDPS-Companion.exe",
-      "bytes": 11125553,
-      "sha256": "3d45b348b1d6e5c44bce6196bab641b6cb2f1e50c74c9475adb80a66120df725"
+      "sha256": "b67d8984639645009ca9384bf8eef80865a2a49c5fb70d6b9b5c3ac233256054"
     },
     {
       "path": "reframework/mhdps/web/assets/backdrops/rise_cover.jpg",
@@ -130,8 +120,8 @@
     },
     {
       "path": "reframework/mhdps/web/index.html",
-      "bytes": 17592,
-      "sha256": "52c29c09e9c33c94a27ca70ffaba353171bc1840457ebe482eb56a69595d0cdf"
+      "bytes": 17297,
+      "sha256": "6790727b9a6292b5f39e46a0e750b8ca9733b637359c26bd50618a8699877e7e"
     },
     {
       "path": "reframework/mhdps/web/js/app.js",
@@ -176,7 +166,12 @@
     {
       "path": "reframework/mhdps/web/setup.html",
       "bytes": 3420,
-      "sha256": "06c4e3058ac8cd26161c03ba6ab6d9ee9b2b67e340db097c636816279c25db33"
+      "sha256": "7c9ebfd0aa3e637dec174314d2963ae39d216f15763c0d4c79f48310c9585d12"
+    },
+    {
+      "path": "reframework/plugins/MHDPS-Bootstrap.dll",
+      "bytes": 205312,
+      "sha256": "53d59f6b2c094d41b29239a2da3f11c74188242faeb6b0d09a7bb3df4d85451c"
     }
   ]
 }

@@ -1,4 +1,4 @@
--- MHDPS 0.1.4: passive Wilds telemetry; never modifies game values.
+-- MHDPS 0.1.5: passive Wilds telemetry; never modifies game values.
 if _G.MHDPS_STANDALONE then return _G.MHDPS_STANDALONE end
 local S={status='idle',seconds=0,players={},hunters={},enemies={},hooks={},errors={},seq=0,session=tostring(os.time())}
 _G.MHDPS_STANDALONE=S
@@ -257,7 +257,7 @@ local function export()
     local errors={}; for k,e in pairs(S.errors) do errors[#errors+1]=k..': '..e end
     json.dump_file('dps_live.json',{schemaVersion=1,source='mhdps-wilds',game='wilds',
         quest={id=S.questId,dpsBasis='quest-time',status=S.status,timeSeconds=S.seconds,monster=target and target.name or nil,monsterHpPercent=hp,monsterHp=target and target.hp,targetHp=target and target.maxHp,parts=target and target.parts},
-        players=players,diagnostics={version='0.1.4',hooks=S.hooks,errors=errors,sessionMembers=#members}})
+        players=players,diagnostics={version='0.1.5',hooks=S.hooks,errors=errors,sessionMembers=#members}})
 end
 re.on_frame(function()
     if os.clock()-last<0.2 then return end; last=os.clock()
@@ -265,12 +265,12 @@ re.on_frame(function()
 end)
 re.on_draw_ui(function()
     if imgui.tree_node('MHDPS Combat Analytics') then
-        imgui.text('MHDPS 0.1.4 | '..S.status..' | '..tostring(S.seconds)..' s')
+        imgui.text('MHDPS 0.1.5 | '..S.status..' | '..tostring(S.seconds)..' s')
         imgui.text('Export: reframework/data/dps_live.json')
         for k,v in pairs(S.hooks) do imgui.text((v and 'OK ' or 'MISSING ')..k) end
         for k,e in pairs(S.errors) do imgui.text(k..': '..e) end
         imgui.tree_pop()
     end
 end)
-log.info('[MHDPS] 0.1.4 loaded; Script Generated UI contains hook diagnostics')
+log.info('[MHDPS] 0.1.5 loaded; Script Generated UI contains hook diagnostics')
 return S
